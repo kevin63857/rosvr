@@ -19,8 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4324775340843092}
-  - component: {fileID: 114420711191179106}
-  - component: {fileID: 114279074695670284}
+  - component: {fileID: 114298361170703516}
   m_Layer: 0
   m_Name: PointCloud
   m_TagString: Untagged
@@ -41,30 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114279074695670284
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1733025864891252}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e69bdee01cc904f91bfcbf853f9496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  home_x: 0
-  home_y: 0
-  home_z: 0
-  count: 0
-  adj: 0
-  whichBuffer: 0
-  doIt: 0
-  didIt: 0
-  cloudGameObject: {fileID: 0}
-  cloudMesh: {fileID: 0}
-  triangleSize: 0.005
-  HD_CLOUD_SIZE: 414720
---- !u!114 &114420711191179106
+--- !u!114 &114298361170703516
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -72,11 +48,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733025864891252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d3b8cb271456647ba4d9a9fdc99a30, type: 3}
+  m_Script: {fileID: 11500000, guid: eb550f28a04471c448ada7544587fe9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointShape: 0
+  TFName: 
   spread_updates: 0
   hard_recalculate_triangles: 0
+  include_color: 1
+  accumulate_data: 0
   HD_CLOUD_SIZE: 414720
   topic_name: /kinect2_old/hd/points
+  Mesh_File: {fileID: 0}
+  is_static: 0
