@@ -96,7 +96,7 @@ public class headAttacher : MonoBehaviour
             Quaternion q = hj.transform.rotation;
             float speed = 0.1f;
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, t, 0.05f);
+            transform.position = Vector3.MoveTowards(hj.transform.position, t, 0.05f);
         }
     }
 }

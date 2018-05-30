@@ -4,6 +4,8 @@ using Ros_CSharp;
 using Messages;
 using Messages.std_msgs;
 using Messages.rosgraph_msgs;
+using Messages.numl_val_msgs;
+using Messages.ihmc_msgs;
 using tf.net;
 
 public class WandStatePublisher : MonoBehaviour
@@ -15,7 +17,8 @@ public class WandStatePublisher : MonoBehaviour
     private Publisher<Messages.tf.tfMessage> tfPub;
     private Publisher<Messages.ihmc_msgs.HandTrajectoryRosMessage> handpub;
     private Publisher<Messages.ihmc_msgs.PelvisHeightTrajectoryRosMessage> pelvispub;
-    private Subscriber<Clock> clockSub;
+    private Publisher<Messages.numl_val_msgs.HandPoseTrajectoryRosMessage> fingerpub;
+  private Subscriber<Clock> clockSub;
     private Publisher<Messages.geometry_msgs.Twist> twistPub;
 
     private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
@@ -23,8 +26,9 @@ public class WandStatePublisher : MonoBehaviour
 
     private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     private Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
+    private Valve.VR.EVRButtonId fingerButton = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
 
-    public string child_frame_id;
+  public string child_frame_id;
     public int side;
     public bool using_gazebo;
     public bool use_grip_button;
@@ -33,6 +37,7 @@ public class WandStatePublisher : MonoBehaviour
     public float lowheight;
     public float standheight;
     private float timelapse = 0.0f;
+    public bool fingersClosed = false;
     Clock c_;
 
     void Start () {
@@ -44,6 +49,7 @@ public class WandStatePublisher : MonoBehaviour
         tfPub = nh.advertise<Messages.tf.tfMessage>("/tf", 10);
         handpub = nh.advertise<Messages.ihmc_msgs.HandTrajectoryRosMessage>("/ihmc_ros/valkyrie/control/hand_trajectory", 10);
         pelvispub = nh.advertise<Messages.ihmc_msgs.PelvisHeightTrajectoryRosMessage>("/ihmc_ros/valkyrie/control/pelvis_height_trajectory", 10);
+        fingerpub = nh.advertise<Messages.numl_val_msgs.HandPoseTrajectoryRosMessage>("/arm_control", 10);
         twistPub = nh.advertise<Messages.geometry_msgs.Twist>(twist_topic_name, 10);
     }
 
@@ -53,6 +59,73 @@ public class WandStatePublisher : MonoBehaviour
             //Debug.Log("Controller Not Initialized");
             return;
         }
+
+        if(controller.GetPressDown(fingerButton))
+    {
+      HandPoseTrajectoryRosMessage msg = new HandPoseTrajectoryRosMessage();
+
+      msg.robot_side = HandPoseTrajectoryRosMessage.RIGHT;
+      msg.execution_mode = HandPoseTrajectoryRosMessage.OVERRIDE;
+      msg.desired_pose = HandPoseTrajectoryRosMessage.POSE;
+      msg.unique_id = 15;
+      msg.homeAllHandJoints = false;
+      msg.homeAllForearmJoints = false;
+
+      msg.forearm_joint_trajectory_messages = new OneDoFJointTrajectoryRosMessage[3];
+      for (int i = 0; i < 3; i++)
+      {
+        msg.forearm_joint_trajectory_messages[i] = new OneDoFJointTrajectoryRosMessage();
+        msg.forearm_joint_trajectory_messages[i].trajectory_points = new TrajectoryPoint1DRosMessage[1];
+        msg.forearm_joint_trajectory_messages[i].trajectory_points[0] = new TrajectoryPoint1DRosMessage();
+      }
+
+      msg.hand_joint_trajectory_messages = new OneDoFJointTrajectoryRosMessage[6];
+
+
+      for (int i = 0; i < 6; i++)
+      {
+        msg.hand_joint_trajectory_messages[i] = new OneDoFJointTrajectoryRosMessage();
+        msg.hand_joint_trajectory_messages[i].trajectory_points = new TrajectoryPoint1DRosMessage[1];
+        msg.hand_joint_trajectory_messages[i].trajectory_points[0] = new TrajectoryPoint1DRosMessage();
+      }
+
+
+      if (fingersClosed)
+      {
+        msg.hand_joint_trajectory_messages[0].trajectory_points[0].position = 1.5;
+
+        msg.hand_joint_trajectory_messages[1].trajectory_points[0].position = 0.3;
+
+        msg.hand_joint_trajectory_messages[2].trajectory_points[0].position = 0.2;
+
+        msg.hand_joint_trajectory_messages[3].trajectory_points[0].position = 0.2;
+
+        msg.hand_joint_trajectory_messages[4].trajectory_points[0].position = 0.2;
+
+        msg.hand_joint_trajectory_messages[5].trajectory_points[0].position = 0.2;
+
+        fingersClosed = false;
+      }
+      else
+      {
+        msg.hand_joint_trajectory_messages[0].trajectory_points[0].position = 1.5;
+
+        msg.hand_joint_trajectory_messages[1].trajectory_points[0].position = 0.3;
+
+        msg.hand_joint_trajectory_messages[2].trajectory_points[0].position = 2.0;
+
+        msg.hand_joint_trajectory_messages[3].trajectory_points[0].position = 2.0;
+
+        msg.hand_joint_trajectory_messages[4].trajectory_points[0].position = 2.0;
+
+        msg.hand_joint_trajectory_messages[5].trajectory_points[0].position = 2.0;
+
+        fingersClosed = true;
+      }
+
+      msg.Serialize(true);
+      fingerpub.publish(msg);
+    }
 
         if (controller.GetPress(triggerButton))
         {

@@ -342,8 +342,8 @@ namespace Valkyrie_VR
       }
       else
       {
-        ROS.ROS_HOSTNAME = "asgard";
-        ROS.ROS_MASTER_URI = "http://thor:11311";
+        ROS.ROS_HOSTNAME = "10.185.0.204";
+        ROS.ROS_MASTER_URI = "http://10.185.0.30:11311";
         ROS.Init(new String[0], "mesh_pcloud_renderer");
         nh = new NodeHandle();
         //nh= rosmaster.getNodeHandle();
@@ -357,16 +357,16 @@ namespace Valkyrie_VR
           theCloud[i] = theCloudObject.GetComponent<mesh_pcloud>();
         }
         sub = nh.subscribe<Messages.sensor_msgs.PointCloud2>(topic_name, 2, subCallback);
-        unity_tf_msg = new Messages.geometry_msgs.PolygonStamped();
-        unity_tf_msg.header = new Messages.std_msgs.Header();
-        unity_tf_msg.polygon = new Messages.geometry_msgs.Polygon();
-        unity_tf_msg.header.frame_id = (is_static ? Mesh_File.name : topic_name);
-        unity_tf_msg.polygon.points = new Messages.geometry_msgs.Point32[3];
-        unity_tf_pub = nh.advertise<Messages.geometry_msgs.PolygonStamped>("/unity_tf", 10);
-        ThreadStart pub_thread_start = new ThreadStart(UnityTFPublisher);
-        pub_thread = new Thread(pub_thread_start);
-        pub_thread.Start();
       }
+      /*unity_tf_msg = new Messages.geometry_msgs.PolygonStamped();
+      unity_tf_msg.header = new Messages.std_msgs.Header();
+      unity_tf_msg.polygon = new Messages.geometry_msgs.Polygon();
+      unity_tf_msg.header.frame_id = (is_static ? Mesh_File.name : topic_name);
+      unity_tf_msg.polygon.points = new Messages.geometry_msgs.Point32[3];
+      unity_tf_pub = nh.advertise<Messages.geometry_msgs.PolygonStamped>("/unity_tf", 10);
+      ThreadStart pub_thread_start = new ThreadStart(UnityTFPublisher);
+      pub_thread = new Thread(pub_thread_start);
+      pub_thread.Start();*/
       print("Started");
       //theCloud.Initialize();
     }
@@ -386,7 +386,7 @@ namespace Valkyrie_VR
           print("Cloud not yet started");
         }
       }
-      
+      /*
       unity_tf_msg.polygon.points[0].x = transform.position.x;
       unity_tf_msg.polygon.points[0].y = transform.position.y;
       unity_tf_msg.polygon.points[0].z = transform.position.z;
@@ -395,7 +395,7 @@ namespace Valkyrie_VR
       unity_tf_msg.polygon.points[1].z = transform.rotation.eulerAngles.z;
       unity_tf_msg.polygon.points[2].x = transform.lossyScale.x;
       unity_tf_msg.polygon.points[2].y = transform.lossyScale.y;
-      unity_tf_msg.polygon.points[2].z = transform.lossyScale.z;
+      unity_tf_msg.polygon.points[2].z = transform.lossyScale.z;*/
     }
     void OnApplicationQuit()
     {

@@ -126,7 +126,7 @@ namespace Valkyrie_VR
     }
     void Start()
     {
-      print("Starting theCloud");
+     // print("Starting theCloud");
       if (!mat)
       {
         Shader shader = Shader.Find("Hidden/Internal-Colored");
@@ -151,6 +151,7 @@ namespace Valkyrie_VR
       //collider.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.WeldColocatedVertices;
       ((MeshRenderer)gameObject.GetComponent(typeof(MeshRenderer))).enabled = true;
       ((Renderer)gameObject.GetComponent(typeof(Renderer))).material = mat;
+      transform.Rotate(-90, 0, 90);
       isStarted = true;
     }
   }

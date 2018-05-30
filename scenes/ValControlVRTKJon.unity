@@ -268,8 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdb7c93764a28b46b7b61410b826452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 96957779}
-  doubleInteracting: 0
 --- !u!54 &96957779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -518,6 +516,76 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &122193263
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733025864891252, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_Name
+      value: PointCloud (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: topic_name
+      value: /multisense/lidar_points2_color
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: accumulate_data
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: max_acc_frames
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733025864891252, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: TFName
+      value: /multisense/left_camera_optical_frame
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &132484801
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,16 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33aa1afdc1fcb93498406cc2c025551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripButtonDown: 0
-  gripButtonUp: 0
-  gripButtonPressed: 0
-  triggerButtonDown: 0
-  triggerButtonUp: 0
-  triggerButtonPressed: 0
-  prefab: {fileID: 96957772}
-  touching: 0
-  WindowManager: {fileID: 1014051324}
-  face_mask: {fileID: 1047555390}
 --- !u!135 &149913630
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -659,15 +717,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6598af43289a524e82e44a430b9b40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &149913632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149913626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4409243c52c05a4592cf508c8a5cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   rosmaster: {fileID: 1164111409}
-  twist_topic_name: /ihmc_ros/valkyrie/control/cmd_vel
+  twist_topic_name: /cmd_vel
   child_frame_id: /ViveWand_
   side: 0
   using_gazebo: 0
   use_grip_button: 0
-  use_twist: 1
-  lowheight: 0.95
-  standheight: 1.05
+  use_twist: 0
+  lowheight: 0
+  standheight: 0
+  fingersClosed: 0
+--- !u!114 &149913633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149913626}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffd01bde5cec7149b06460a40f1f4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gripButtonDown: 0
+  gripButtonUp: 0
+  gripButtonPressed: 0
+  triggerButtonDown: 0
+  triggerButtonUp: 0
+  triggerButtonPressed: 0
+  prefab: {fileID: 0}
+  touching: 0
+  WindowManager: {fileID: 0}
+  face_mask: {fileID: 0}
 --- !u!1 &176082786
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,15 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6598af43289a524e82e44a430b9b40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rosmaster: {fileID: 1164111409}
-  twist_topic_name: /ihmc_ros/valkyrie/control/cmd_vel
-  child_frame_id: /ViveWand_
-  side: 0
-  using_gazebo: 0
-  use_grip_button: 0
-  use_twist: 1
-  lowheight: 0.95
-  standheight: 1.05
 --- !u!114 &178001758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,16 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33aa1afdc1fcb93498406cc2c025551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripButtonDown: 0
-  gripButtonUp: 0
-  gripButtonPressed: 0
-  triggerButtonDown: 0
-  triggerButtonUp: 0
-  triggerButtonPressed: 0
-  prefab: {fileID: 96957772}
-  touching: 0
-  WindowManager: {fileID: 1014051324}
-  face_mask: {fileID: 1047555390}
 --- !u!135 &178001759
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -803,10 +875,31 @@ SphereCollider:
   m_GameObject: {fileID: 178001754}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &178001760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 178001754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4409243c52c05a4592cf508c8a5cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rosmaster: {fileID: 1164111409}
+  twist_topic_name: /cmd_vel
+  child_frame_id: /ViveWand_
+  side: 0
+  using_gazebo: 0
+  use_grip_button: 0
+  use_twist: 0
+  lowheight: 0
+  standheight: 0
+  fingersClosed: 0
 --- !u!1 &190250073
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +1049,55 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 198398200}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &203955284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 203955286}
+  - component: {fileID: 203955285}
+  m_Layer: 0
+  m_Name: WalkingControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &203955285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 203955284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fd78804878ee541a03d89721bb4d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepControlPointer: {fileID: 1070627349}
+  FootstepCreationMode: 0
+  FutureLeft: {r: 0.3137255, g: 1, b: 0.3137255, a: 0.39215687}
+  FutureRight: {r: 0.3137255, g: 0.3137255, b: 1, a: 0.39215687}
+  PastLeft: {r: 0.15686275, g: 0.5882353, b: 0.15686275, a: 0.39215687}
+  PastRight: {r: 0.15686275, g: 0.15686275, b: 0.5882353, a: 0.39215687}
+  PathColor: {r: 0, g: 0, b: 0, a: 1}
+  DistanceBetweenSteps: 0.23
+  FeetSpreadDistance: 0.6
+--- !u!4 &203955286
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 203955284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &247950964 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 189822, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
@@ -990,8 +1132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5bb9972b3962bb4abbc77d0d00ec122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rosmaster: {fileID: 1164111409}
-  child_frame_id: 
 --- !u!114 &247950969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,8 +1143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f36ecb56df038489042afa76074ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frame_id: 
-  rosmaster: {fileID: 1164111409}
 --- !u!114 &247950970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,7 +1305,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 259286901}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d45c8d32f1d960d4498790bb3961fc52, type: 3}
   m_Name: 
@@ -1411,8 +1549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdb7c93764a28b46b7b61410b826452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 332645165}
-  doubleInteracting: 0
 --- !u!65 &332645164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2001,15 +2137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6598af43289a524e82e44a430b9b40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rosmaster: {fileID: 1164111409}
-  twist_topic_name: /ihmc_ros/valkyrie/control/cmd_vel
-  child_frame_id: /ViveWand_
-  side: 1
-  using_gazebo: 0
-  use_grip_button: 0
-  use_twist: 0
-  lowheight: 0.9
-  standheight: 1.05
 --- !u!114 &387506450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2021,16 +2148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33aa1afdc1fcb93498406cc2c025551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripButtonDown: 0
-  gripButtonUp: 0
-  gripButtonPressed: 0
-  triggerButtonDown: 0
-  triggerButtonUp: 0
-  triggerButtonPressed: 0
-  prefab: {fileID: 96957772}
-  touching: 0
-  WindowManager: {fileID: 1014051324}
-  face_mask: {fileID: 1047555390}
 --- !u!135 &387506451
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2039,10 +2156,101 @@ SphereCollider:
   m_GameObject: {fileID: 387506446}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &387506452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387506446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4409243c52c05a4592cf508c8a5cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rosmaster: {fileID: 1164111409}
+  twist_topic_name: /cmd_vel
+  child_frame_id: /ViveWand_
+  side: 1
+  using_gazebo: 0
+  use_grip_button: 0
+  use_twist: 0
+  lowheight: 0
+  standheight: 0
+  fingersClosed: 0
+--- !u!1001 &447443229
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733025864891252, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_Name
+      value: PointCloud (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: topic_name
+      value: /multisense/image_points2_color
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: pointShape
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: spread_updates
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: TFName
+      value: /multisense/left_camera_optical_frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733025864891252, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &452881208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,10 +2328,8 @@ GameObject:
   m_Component:
   - component: {fileID: 457704816}
   - component: {fileID: 457704815}
-  - component: {fileID: 457704814}
   - component: {fileID: 457704812}
   - component: {fileID: 457704810}
-  - component: {fileID: 457704811}
   - component: {fileID: 457704813}
   - component: {fileID: 457704817}
   m_Layer: 0
@@ -2145,49 +2351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   togglePointerOnHit: 0
---- !u!114 &457704811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 457704809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0ad608ee982c348aaa6aea32a3db61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableTeleport: 1
-  targetListPolicy: {fileID: 0}
-  controller: {fileID: 0}
-  pointerOriginTransform: {fileID: 0}
-  pointerOriginSmoothingSettings:
-    smoothsPosition: 0
-    maxAllowedPerFrameDistanceDifference: 0.003
-    smoothsRotation: 0
-    maxAllowedPerFrameAngleDifference: 1.5
-  pointerMaterial: {fileID: 0}
-  pointerHitColor: {r: 0, g: 0.5, b: 0, a: 1}
-  pointerMissColor: {r: 0.8, g: 0, b: 0, a: 1}
-  holdButtonToActivate: 1
-  interactWithObjects: 0
-  grabToPointerTip: 0
-  activateDelay: 0
-  pointerVisibility: 0
-  layersToIgnore:
-    serializedVersion: 2
-    m_Bits: 4
-  pointerLength: 10
-  pointerDensity: 10
-  collisionCheckFrequency: 0
-  beamCurveOffset: 1
-  beamHeightLimitAngle: 100
-  rescalePointerTracer: 0
-  showPointerCursor: 1
-  pointerCursorRadius: 0.5
-  pointerCursorMatchTargetRotation: 0
-  customPointerTracer: {fileID: 0}
-  customPointerCursor: {fileID: 0}
-  validTeleportLocationObject: {fileID: 0}
 --- !u!114 &457704812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,37 +2381,6 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 0}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
---- !u!114 &457704814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 457704809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45c8d32f1d960d4498790bb3961fc52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelElementPaths:
-    bodyModelPath: 
-    triggerModelPath: 
-    leftGripModelPath: 
-    rightGripModelPath: 
-    touchpadModelPath: 
-    buttonOneModelPath: 
-    buttonTwoModelPath: 
-    systemMenuModelPath: 
-    startMenuModelPath: 
-  elementHighlighterOverrides:
-    body: {fileID: 0}
-    trigger: {fileID: 0}
-    gripLeft: {fileID: 0}
-    gripRight: {fileID: 0}
-    touchpad: {fileID: 0}
-    buttonOne: {fileID: 0}
-    buttonTwo: {fileID: 0}
-    systemMenu: {fileID: 0}
-    startMenu: {fileID: 0}
 --- !u!114 &457704815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2367,16 +2499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33aa1afdc1fcb93498406cc2c025551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripButtonDown: 0
-  gripButtonUp: 0
-  gripButtonPressed: 0
-  triggerButtonDown: 0
-  triggerButtonUp: 0
-  triggerButtonPressed: 0
-  prefab: {fileID: 96957772}
-  touching: 0
-  WindowManager: {fileID: 1014051324}
-  face_mask: {fileID: 1047555390}
 --- !u!135 &495748924
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2400,15 +2522,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6598af43289a524e82e44a430b9b40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &495748926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495748920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4409243c52c05a4592cf508c8a5cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   rosmaster: {fileID: 1164111409}
-  twist_topic_name: /ihmc_ros/valkyrie/control/cmd_vel
+  twist_topic_name: /cmd_vel
   child_frame_id: /ViveWand_
   side: 1
   using_gazebo: 0
   use_grip_button: 0
   use_twist: 0
-  lowheight: 0.9
-  standheight: 1.05
+  lowheight: 0
+  standheight: 0
+  fingersClosed: 0
+--- !u!114 &495748927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495748920}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffd01bde5cec7149b06460a40f1f4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gripButtonDown: 0
+  gripButtonUp: 0
+  gripButtonPressed: 0
+  triggerButtonDown: 0
+  triggerButtonUp: 0
+  triggerButtonPressed: 0
+  prefab: {fileID: 0}
+  touching: 0
+  WindowManager: {fileID: 0}
+  face_mask: {fileID: 0}
 --- !u!21 &519901187
 Material:
   serializedVersion: 6
@@ -2463,9 +2618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3482bbedff57d44ab487c88bb96f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frame_id: /TFTree/Valkyrie/rightPalm
-  side: 1
-  rosmaster: {fileID: 0}
 --- !u!4 &527419378 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: b59fe1c414dda5f4abf64db63fbf20d6, type: 3}
@@ -3061,7 +3213,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1588
+      value: 725
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -3128,6 +3280,9 @@ GameObject:
   - component: {fileID: 779085946}
   - component: {fileID: 779085947}
   - component: {fileID: 779085945}
+  - component: {fileID: 779085948}
+  - component: {fileID: 779085949}
+  - component: {fileID: 779085950}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -3192,7 +3347,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 779085943}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eba3cd5456cd79e49948f5ceb58544b4, type: 3}
   m_Name: 
@@ -3261,6 +3416,51 @@ MonoBehaviour:
   controller: {fileID: 0}
   interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
+--- !u!114 &779085948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779085943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabButton: 7
+  grabPrecognition: 0
+  throwMultiplier: 1
+  createRigidBodyWhenNotTouching: 0
+  controllerAttachPoint: {fileID: 779085950}
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
+--- !u!114 &779085949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779085943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customColliderContainer: {fileID: 0}
+--- !u!54 &779085950
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779085943}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &782839413
 GameObject:
   m_ObjectHideFlags: 0
@@ -3848,8 +4048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdb7c93764a28b46b7b61410b826452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 962560034}
-  doubleInteracting: 0
 --- !u!54 &962560034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3986,8 +4184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5bb9972b3962bb4abbc77d0d00ec122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rosmaster: {fileID: 1164111409}
-  child_frame_id: /HMD
 --- !u!1001 &982178634
 Prefab:
   m_ObjectHideFlags: 0
@@ -4248,10 +4444,10 @@ GameObject:
   - component: {fileID: 1070627345}
   - component: {fileID: 1070627347}
   - component: {fileID: 1070627348}
+  - component: {fileID: 1070627349}
   - component: {fileID: 1070627346}
   - component: {fileID: 1070627350}
   - component: {fileID: 1070627351}
-  - component: {fileID: 1070627349}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -4398,16 +4594,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableTeleport: 0
   targetListPolicy: {fileID: 0}
-  pointerRenderer: {fileID: 1070627351}
+  pointerRenderer: {fileID: 1070627350}
   activationButton: 3
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
   selectionButton: 4
-  selectOnPress: 0
+  selectOnPress: 1
   selectionDelay: 0
   selectAfterHoverDuration: 0
-  interactWithObjects: 0
+  interactWithObjects: 1
   grabToPointerTip: 0
   controller: {fileID: 0}
   interactUse: {fileID: 0}
@@ -4418,7 +4614,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1070627344}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fc65878c7102524bb8c2bcfbefff497, type: 3}
   m_Name: 
@@ -4452,7 +4648,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1070627344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d34898f6d0fc5c24087720ca677a1bd8, type: 3}
   m_Name: 
@@ -4792,8 +4988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autostart: 1
-  Master_URI: http://thor:11311
-  HOSTNAME: asgard
+  Master_URI: http://mjolnir:11311
+  HOSTNAME: 10.185.0.206
 --- !u!4 &1164111410
 Transform:
   m_ObjectHideFlags: 0
@@ -4854,7 +5050,7 @@ Prefab:
     - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
         type: 2}
       propertyPath: spread_updates
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4912,6 +5108,15 @@ Prefab:
     - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733025864891252, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: TFName
+      value: /multisense/left_camera_optical_frame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
@@ -5751,11 +5956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4ea9e4d88c0dc479d5b80eb5c367f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rosmaster: {fileID: 1164111409}
-  topic_name: /multisense/lidar_points2_color
-  unitybuffer: 500
-  TFName: /multisense/left_camera_frame
-  shader: {fileID: 4800000, guid: 90da656d231ff56489b862ddff3aeea3, type: 3}
 --- !u!23 &1570140383
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6483,10 +6683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791da837413647a46af168e08049b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rosmaster: {fileID: 0}
-  topic_name: /multisense/lidar_scan
-  TFName: /multisense/head_hokuyo_frame
-  NumberOfMessagesToDisplay: 10
 --- !u!23 &1734457235
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6528,6 +6724,67 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1734457232}
   m_Mesh: {fileID: 0}
+--- !u!1001 &1763551211
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324775340843092, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733025864891252, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+      propertyPath: m_Name
+      value: PointCloud (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: Mesh_File
+      value: 
+      objectReference: {fileID: 4900000, guid: b2f0fb279d7a2cb4a8c1a19833ae7db6, type: 3}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: is_static
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114298361170703516, guid: 770311b5d617bd74a9343b6af8cb98ea,
+        type: 2}
+      propertyPath: pointShape
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 770311b5d617bd74a9343b6af8cb98ea, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1776590455
 GameObject:
   m_ObjectHideFlags: 0
@@ -6856,8 +7113,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f36ecb56df038489042afa76074ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frame_id: /TFTree/Valkyrie/head
+--- !u!114 &1845138167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845138160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d1b14742cd4694dbd47281bce26008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frame_id: upperNeckPitchLink
   rosmaster: {fileID: 1164111409}
+--- !u!114 &1845138168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845138160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  touchHighlightColor: {r: 0.028654827, g: 0.12702979, b: 0.7794118, a: 0}
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 0
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  usingState: 0
+--- !u!114 &1845138169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845138160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 0
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  destroyImmediatelyOnThrow: 0
+  breakForce: 1500
 --- !u!1 &1880663564
 GameObject:
   m_ObjectHideFlags: 0
@@ -7364,9 +7681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3482bbedff57d44ab487c88bb96f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frame_id: /TFTree/Valkyrie/leftPalm
-  side: 0
-  rosmaster: {fileID: 0}
 --- !u!1 &2077547056
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,11 +57,11 @@ public class WandController : MonoBehaviour {
 
         controller.GetState();
 
-        if (controller.GetPressDown(appButton))
-        {
-            //createWindow();
-            toggleControl();
-        }
+      //  if (controller.GetPressDown(appButton))
+      //  {
+     //       //createWindow();
+     //       toggleControl();
+     //   }
 
         if(controller.GetPressDown(gripButton))
         {

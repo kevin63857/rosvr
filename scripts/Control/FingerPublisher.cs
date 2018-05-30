@@ -11,13 +11,13 @@ public class FingerPublisher : MonoBehaviour {
     private Publisher<HandPoseTrajectoryRosMessage> handpub;
 
     HandPoseTrajectoryRosMessage msg = new HandPoseTrajectoryRosMessage();
-    HandData data;
+    //HandData data;
 
     public double index, middle, pinky, thumb;
     public bool left_hand_closed = false;
     // Use this for initialization
     void Start () {
-        data = GetComponent<HandData>();
+        /*data = GetComponent<HandData>();
 
         NodeHandle nh = rosmaster.getNodeHandle();
         handpub = nh.advertise<HandPoseTrajectoryRosMessage>("/arm_control", 10);
@@ -46,13 +46,13 @@ public class FingerPublisher : MonoBehaviour {
             msg.hand_joint_trajectory_messages[i].trajectory_points = new TrajectoryPoint1DRosMessage[1];
             msg.hand_joint_trajectory_messages[i].trajectory_points[0] = new TrajectoryPoint1DRosMessage();
         }
-
+        */
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        left_hand_closed = data.IsClosed(ManusVR.device_type_t.GLOVE_LEFT);
+        /*left_hand_closed = data.IsClosed(ManusVR.device_type_t.GLOVE_LEFT);
         //left_hand_closed = true;
 
         if (left_hand_closed)
@@ -96,6 +96,6 @@ public class FingerPublisher : MonoBehaviour {
 
             msg.Serialize(true);
             handpub.publish(msg);
-        }
+        } */
     }
 }
